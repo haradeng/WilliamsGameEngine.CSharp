@@ -1,4 +1,5 @@
 ﻿using GameEngine;
+using SFML.System;
 
 namespace MyGame
 {
@@ -6,6 +7,10 @@ namespace MyGame
     {
         public GameScene()
         {
+            Ship ship = new Ship();
+            AddGameObject(ship);
+            
+
         }
     }
 }
