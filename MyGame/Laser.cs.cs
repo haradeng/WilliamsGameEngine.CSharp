@@ -35,4 +35,8 @@ public class Laser : GameObject
         }
 
     }
+    public override FloatRect GetCollisionRect()
+    {
+        return _sprite.GetGlobalBounds();
+    }
 }

@@ -16,6 +16,20 @@ public class Meteor : GameObject
         _sprite.Position = pos;
 
         AssignTag("meteor");
+        SetCollisionCheckEnabled(true);
+    }
+
+    public override FloatRect GetCollisionRect()
+    {
+        return _sprite.GetGlobalBounds();
+    }
+    public override void HandleCollision(GameObject otherGameObject)
+    {
+        if (otherGameObject.HasTag("laser"))
+        {
+            otherGameObject.MakeDead();
+        }
+        MakeDead();
     }
 
     public override void Draw()
@@ -37,4 +51,5 @@ public class Meteor : GameObject
     }
 
     }
+
 }
