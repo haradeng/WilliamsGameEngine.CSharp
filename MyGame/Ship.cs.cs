@@ -35,9 +35,9 @@ public class Ship : GameObject
         if (Keyboard.IsKeyPressed(Keyboard.Key.Up)) { y -= Speed * msElapsed; }
         if (Keyboard.IsKeyPressed(Keyboard.Key.Down)) { y += Speed * msElapsed; }
         if (Keyboard.IsKeyPressed(Keyboard.Key.Left)) {x -= Speed * msElapsed; }
-        if (Keyboard.IsKeyPressed(Keyboard.Key.Right)) {x += Speed * msElapsed; }
+        if (Keyboard.IsKeyPressed(Keyboard.Key.Right)) {x += Speed * msElapsed; } 
 
-      FloatRect bounds = _sprite.GetGlobalBounds();
+      FloatRect bounds = _sprite.GetGlobalBounds(); 
 
         // screen size
         float screenWidth = 800;
