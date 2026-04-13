@@ -17,6 +17,9 @@ namespace MyGame
 
             Score score = new Score(new Vector2f(10.0f, 10.0f));
             AddGameObject(score);
+
+            Background background = new Background();
+            AddGameObject(background);
         }
         //get current code
         public int GetScore()
