@@ -11,6 +11,8 @@ public class Ship : GameObject
     private const float Speed = 0.3f;
     private const int FireDelay = 200;
     private int _fireTimer = 0;
+    //private float _rotation = 0f;
+    //private const float RotationSpeed = 0.1f;
 
     private readonly Sprite _sprite = new Sprite();
     //creates ship
@@ -57,6 +59,23 @@ public class Ship : GameObject
 
 
         _sprite.Position= new Vector2f(x, y);
+        
+       // Left arrow spins left, right arrow spins right
+       /*  if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
+            _rotation -= RotationSpeed * msElapsed;
+
+        if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
+            _rotation += RotationSpeed * msElapsed;
+            _sprite.Rotation = _rotation;
+            _sprite.Origin = new Vector2f(
+            _sprite.TextureRect.Width / 2f,
+            _sprite.TextureRect.Height / 2f
+                                        ); */
+
+
+
+
+
 
         if (_fireTimer > 0)
     {
