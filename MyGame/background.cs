@@ -22,8 +22,9 @@ public Background()
         _sprite1.Texture = Game.GetTexture("Resources/background.png");
         _sprite2.Texture = Game.GetTexture("Resources/background.png");
 
+
         _sprite1.Position = new Vector2f(0, 0);
-        _sprite2.Position = new Vector2f(0,-_screenHeight);
+        _sprite2.Position = new Vector2f(0,-800);
     }
     public override void Draw()
     {
@@ -33,16 +34,16 @@ public Background()
     public override void Update(Time elapsed)
     {
         int msElapsed = elapsed.AsMilliseconds();
-        _sprite1.Position = new Vector2f(_sprite1.Position.X + _scrollingSpeed * msElapsed, _sprite1.Position.Y );
-        _sprite2.Position = new Vector2f(_sprite2.Position.X + _scrollingSpeed * msElapsed, _sprite2.Position.Y);
+        _sprite1.Position = new Vector2f(_sprite1.Position.X - _scrollingSpeed * msElapsed, _sprite1.Position.Y );
+        _sprite2.Position = new Vector2f(_sprite2.Position.X - _scrollingSpeed * msElapsed, _sprite2.Position.Y);
 
         float screenWidth = 800f;
 
-        if (_sprite1.Position.X >= screenWidth)
-            _sprite1.Position = new Vector2f(_sprite2.Position.X - screenWidth, 0);
+        if (_sprite1.Position.X <= -800)
+            _sprite1.Position = new Vector2f(_sprite2.Position.X + 800, 0);
 
-        if (_sprite2.Position.X >= screenWidth)
-            _sprite2.Position = new Vector2f(_sprite1.Position.X - screenWidth, 0);
+        if (_sprite2.Position.X <= -800)
+            _sprite2.Position = new Vector2f(_sprite1.Position.X + 800, 0);
 
     }
 }
