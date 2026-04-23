@@ -9,9 +9,7 @@ public class Laser : GameObject
 {
     private const float Speed = 1.2f;
     private readonly Sprite _sprite= new Sprite();
-    //private bool _rapidFire = false;
-   // private int _rapidFireTimer = 0;
-   // private const int RapidFireDuration = 5000; //5 seconds
+   
     public Laser(Vector2f pos)
     {
         _sprite.Texture = Game.GetTexture("Resources/laser.png");

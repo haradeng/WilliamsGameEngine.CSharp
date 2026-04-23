@@ -13,6 +13,9 @@ public class Ship : GameObject
     private int _fireTimer = 0;
     //private float _rotation = 0f;
     //private const float RotationSpeed = 0.1f;
+     private bool _rapidFire = false;
+     private int _rapidFireTimer = 0;
+     private const int RapidFireDuration = 5000; //5 seconds
 
     private readonly Sprite _sprite = new Sprite();
     //creates ship
@@ -38,6 +41,15 @@ public class Ship : GameObject
         if (Keyboard.IsKeyPressed(Keyboard.Key.Down)) { y += Speed * msElapsed; }
         if (Keyboard.IsKeyPressed(Keyboard.Key.Left)) {x -= Speed * msElapsed; }
         if (Keyboard.IsKeyPressed(Keyboard.Key.Right)) {x += Speed * msElapsed; } 
+        if (Keyboard.IsKeyPressed(Keyboard.Key.R))ActivateRapidFire();
+        if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _fireTimer <= 0)
+{
+    _fireTimer = _rapidFire ? 50 : FireDelay;
+    Console.WriteLine("RapidFire: " + _rapidFire + " Timer: " + _fireTimer);
+    
+}
+
+        
 
       FloatRect bounds = _sprite.GetGlobalBounds(); 
 
@@ -83,8 +95,8 @@ public class Ship : GameObject
     }
         if(Keyboard.IsKeyPressed(Keyboard.Key.Space) && _fireTimer <=0)
     {
-        _fireTimer = FireDelay;
-      // _fireTimer = rapidFire ? 50 : FireDelay;
+       // _fireTimer = FireDelay;
+       _fireTimer = _rapidFire ? 50 : FireDelay;
 
         bounds = _sprite.GetGlobalBounds();
         float laserX = x + bounds.Width;
@@ -93,7 +105,7 @@ public class Ship : GameObject
         Laser laser = new Laser(new Vector2f(laserX, laserY));
         Game.CurrentScene.AddGameObject(laser);
     }
-   /*     if (_rapidFire)
+       if (_rapidFire)
         _rapidFireTimer -= msElapsed;
         if (_rapidFireTimer <= 0)
             _rapidFire = false; 
@@ -102,6 +114,6 @@ public class Ship : GameObject
 {
     _rapidFire = true;
     _rapidFireTimer = RapidFireDuration;
-}  */
-    }
+}  
 }
+

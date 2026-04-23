@@ -24,7 +24,7 @@ public Background()
 
 
         _sprite1.Position = new Vector2f(0, 0);
-        _sprite2.Position = new Vector2f(0,-800);
+        _sprite2.Position = new Vector2f(800,0);
     }
     public override void Draw()
     {
@@ -40,10 +40,10 @@ public Background()
         float screenWidth = 800f;
 
         if (_sprite1.Position.X <= -800)
-            _sprite1.Position = new Vector2f(_sprite2.Position.X + 800, 0);
+            _sprite1.Position = new Vector2f(_sprite1.Position.X + 1600, 0);
 
         if (_sprite2.Position.X <= -800)
-            _sprite2.Position = new Vector2f(_sprite1.Position.X + 800, 0);
+            _sprite2.Position = new Vector2f(_sprite2.Position.X + 1600, 0);
 
     }
 }

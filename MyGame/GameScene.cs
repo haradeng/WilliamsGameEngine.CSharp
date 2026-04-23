@@ -6,7 +6,7 @@ namespace MyGame
     public class GameScene : Scene
     {
         private int _score = 0;
-        private int _lives = 3;
+        private int _lives = 10;
         public GameScene()
         {
              Background background = new Background();
