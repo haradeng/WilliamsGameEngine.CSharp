@@ -16,6 +16,8 @@ public class Laser : GameObject
         _sprite.Position = pos;
 
         AssignTag("laser");
+
+        SetCollisionCheckEnabled(true);
     }
 
     public override void Draw()
@@ -34,10 +36,21 @@ public class Laser : GameObject
         {
             _sprite.Position = new Vector2f(pos.X + Speed * msElapsed, pos.Y);
         }
-
+    
+        
     }
     public override FloatRect GetCollisionRect()
     {
         return _sprite.GetGlobalBounds();
     }
+    public override void HandleCollision(GameObject otherGameObject)
+{
+    if (otherGameObject.HasTag("enemy"))
+    {
+        ((Enemy)otherGameObject).TakeHit();
+        MakeDead();
+    }
+}
+
+    
 }

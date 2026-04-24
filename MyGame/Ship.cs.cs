@@ -23,6 +23,8 @@ public class Ship : GameObject
     {
         _sprite.Texture = Game.GetTexture("Resources/ship.png");
         _sprite.Position = new Vector2f(100, 100);
+        AssignTag("ship");
+        SetCollisionCheckEnabled(true);
     }
     // draws ship 
     public override void Draw()

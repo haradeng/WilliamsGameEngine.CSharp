@@ -15,6 +15,7 @@ public class EnemyLaser : GameObject
         _sprite.Texture = Game.GetTexture("Resources/laser.png");
         _sprite.Position = pos;
         AssignTag("enemylaser");
+        SetCollisionCheckEnabled(true);
     }
 
     public override void Draw()
@@ -28,12 +29,28 @@ public class EnemyLaser : GameObject
         Vector2f pos = _sprite.Position;
 
         // Moves downward toward player
-        pos.Y += Speed * msElapsed;
+        pos.X -= Speed * msElapsed;
         _sprite.Position = pos;
 
         // Remove if off screen
-        if (pos.Y > 600)
+        if (pos.X < 0)
             MakeDead();
     }
+
+    public override FloatRect GetCollisionRect()
+{
+    return _sprite.GetGlobalBounds();
+}
+
+public override void HandleCollision(GameObject otherGameObject)
+{
+    if (otherGameObject.HasTag("ship"))
+    {
+        GameScene scene = (GameScene)Game.CurrentScene;
+        scene.DecreaseLives();
+        MakeDead();
+    }
+}
+
 }
 

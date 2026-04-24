@@ -1,4 +1,5 @@
-﻿using GameEngine;
+﻿using System;
+using GameEngine;
 using SFML.System;
 
 namespace MyGame
@@ -7,6 +8,9 @@ namespace MyGame
     {
         private int _score = 0;
         private int _lives = 10;
+        private int _enemySpawnTimer = 0;
+        private const int EnemySpawnDelay = 3000; //3 sec
+        private Random _random = new Random();
         public GameScene()
         {
              Background background = new Background();
@@ -17,6 +21,10 @@ namespace MyGame
             
             MeteorSpawner meteorSpawner = new MeteorSpawner();
             AddGameObject(meteorSpawner);
+
+            EnemySpawner enemySpawner = new EnemySpawner();
+            AddGameObject(enemySpawner);
+
 
             Score score = new Score(new Vector2f(10.0f, 10.0f));
             AddGameObject(score);
