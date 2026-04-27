@@ -28,6 +28,9 @@ namespace MyGame
 
             Score score = new Score(new Vector2f(10.0f, 10.0f));
             AddGameObject(score);
+
+            Lives lives = new Lives(new Vector2f(10.0f, 40.0f));
+            AddGameObject(lives);
             
         }
         //get current code

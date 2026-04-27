@@ -13,7 +13,7 @@ public class EnemySpawner : GameObject
         if (!_spawned)
         {
             _spawned = true;
-            Enemy enemy = new Enemy(new Vector2f(700, 100));
+            Enemy enemy = new Enemy(new Vector2f(650, 100));
             Game.CurrentScene.AddGameObject(enemy);
         }
     }

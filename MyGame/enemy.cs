@@ -16,8 +16,9 @@ public class Enemy : GameObject
 
     public Enemy(Vector2f pos)
     {
-        _sprite.Texture = Game.GetTexture("Resources/meteor.png");
+        _sprite.Texture = Game.GetTexture("Resources/enemy.ship.png");
         _sprite.Position = pos;
+        _sprite.Scale = new Vector2f(0.3f, 0.3f);
         AssignTag("enemy");
         SetCollisionCheckEnabled(true);
     }
@@ -72,5 +73,7 @@ public class Enemy : GameObject
             Game.CurrentScene.AddGameObject(shot);
         }
     }
+
+    
 }
 
