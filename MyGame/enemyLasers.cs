@@ -46,9 +46,18 @@ public override void HandleCollision(GameObject otherGameObject)
 {
     if (otherGameObject.HasTag("ship"))
     {
+       // Game.PlaySound("Resources/boom.wav");
         GameScene scene = (GameScene)Game.CurrentScene;
         scene.DecreaseLives();
+
+        Explosion explosion = new Explosion(new Vector2f(
+        otherGameObject.GetCollisionRect().Left,
+        otherGameObject.GetCollisionRect().Top));
+
+        Game.CurrentScene.AddGameObject(explosion);
+
         MakeDead();
+
     }
 }
 

@@ -16,9 +16,9 @@ public class Enemy : GameObject
 
     public Enemy(Vector2f pos)
     {
-        _sprite.Texture = Game.GetTexture("Resources/enemy.ship.png");
+        _sprite.Texture = Game.GetTexture("Resources/ENEMYSHIP.PNG");
         _sprite.Position = pos;
-        _sprite.Scale = new Vector2f(0.3f, 0.3f);
+        _sprite.Scale = new Vector2f(6.5f, 6.5f);
         AssignTag("enemy");
         SetCollisionCheckEnabled(true);
     }
