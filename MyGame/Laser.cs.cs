@@ -43,14 +43,19 @@ public class Laser : GameObject
     {
         return _sprite.GetGlobalBounds();
     }
-    public override void HandleCollision(GameObject otherGameObject)
+   public override void HandleCollision(GameObject otherGameObject)
 {
     if (otherGameObject.HasTag("enemy"))
     {
         ((Enemy)otherGameObject).TakeHit();
         MakeDead();
     }
+    if (otherGameObject.HasTag("enemylaser"))
+    {
+        return;
+    }
 }
+
 
     
 }

@@ -116,6 +116,19 @@ public class Ship : GameObject
 {
     _rapidFire = true;
     _rapidFireTimer = RapidFireDuration;
-}  
+}
+public override FloatRect GetCollisionRect()
+    {
+        return _sprite.GetGlobalBounds();
+    }
+  public override void HandleCollision(GameObject otherGameObject)
+{
+    if (otherGameObject.HasTag("enemylaser"))
+    {
+        GameScene scene = (GameScene)Game.CurrentScene;
+        scene.DecreaseLives();
+    }
+}
+
 }
 

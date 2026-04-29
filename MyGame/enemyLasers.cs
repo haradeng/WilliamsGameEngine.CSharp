@@ -12,8 +12,9 @@ public class EnemyLaser : GameObject
 
     public EnemyLaser(Vector2f pos)
     {
-        _sprite.Texture = Game.GetTexture("Resources/laser.png");
+        _sprite.Texture = Game.GetTexture("Resources/enemylasers.png");
         _sprite.Position = pos;
+        // _sprite.Scale = new Vector2f(6.5f, 6.5f);
         AssignTag("enemylaser");
         SetCollisionCheckEnabled(true);
     }
@@ -44,7 +45,7 @@ public class EnemyLaser : GameObject
 
 public override void HandleCollision(GameObject otherGameObject)
 {
-    Console.WriteLine("EnemyLaser hit: " + otherGameObject.Tag);
+  //  Console.WriteLine("EnemyLaser hit: " + otherGameObject.Tag);
     if (otherGameObject.HasTag("ship"))
     {
         GameScene scene = (GameScene)Game.CurrentScene;
