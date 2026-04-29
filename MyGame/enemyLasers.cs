@@ -44,22 +44,24 @@ public class EnemyLaser : GameObject
 
 public override void HandleCollision(GameObject otherGameObject)
 {
+    Console.WriteLine("EnemyLaser hit: " + otherGameObject.Tag);
     if (otherGameObject.HasTag("ship"))
     {
-       // Game.PlaySound("Resources/boom.wav");
         GameScene scene = (GameScene)Game.CurrentScene;
         scene.DecreaseLives();
-
         Explosion explosion = new Explosion(new Vector2f(
-        otherGameObject.GetCollisionRect().Left,
-        otherGameObject.GetCollisionRect().Top));
-
+            otherGameObject.GetCollisionRect().Left,
+            otherGameObject.GetCollisionRect().Top));
         Game.CurrentScene.AddGameObject(explosion);
-
         MakeDead();
-
+    }
+    // Ignore collisions with player lasers
+    if (otherGameObject.HasTag("laser"))
+    {
+        return;
     }
 }
+
 
 }
 
