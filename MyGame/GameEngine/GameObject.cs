@@ -31,6 +31,21 @@ namespace GameEngine
         {
             return _isDead;
         }
+        public string Tag
+        {
+            get
+            {
+                if (_tags.Count > 0)
+                {
+                    // Just return the first tag we find. You could modify this to return all tags if you want.
+                    foreach (string tag in _tags)
+                    {
+                        return tag;
+                    }
+                }
+                return "";
+            }
+        }
 
         public void MakeDead()
         {

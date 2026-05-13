@@ -45,13 +45,17 @@ public class Laser : GameObject
     }
    public override void HandleCollision(GameObject otherGameObject)
 {
+    Console.WriteLine("Laser hit: = " + otherGameObject.Tag);
     if (otherGameObject.HasTag("enemy"))
     {
+        Console.WriteLine("Enemy hit!");
         ((Enemy)otherGameObject).TakeHit();
         MakeDead();
     }
     if (otherGameObject.HasTag("enemylaser"))
     {
+        Console.WriteLine("Enemy laser hit!");
+        ((EnemyLaser)otherGameObject).MakeDead();
         return;
     }
 }

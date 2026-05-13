@@ -23,6 +23,21 @@ public class Enemy : GameObject
         SetCollisionCheckEnabled(true);
     }
 
+    public override FloatRect GetCollisionRect()
+    {
+        return _sprite.GetGlobalBounds();
+    }
+
+  public override void HandleCollision(GameObject otherGameObject)
+{
+        Console.WriteLine("my enemy ship = " + otherGameObject.Tag);
+    if (otherGameObject.HasTag("laser"))
+    {
+        GameScene scene = (GameScene)Game.CurrentScene;
+        scene.DecreaseLives();
+    }
+}
+
     public override void Draw()
     {
         Game.RenderWindow.Draw(_sprite);
