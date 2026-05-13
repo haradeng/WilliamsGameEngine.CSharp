@@ -45,10 +45,10 @@ public class EnemyLaser : GameObject
 
 public override void HandleCollision(GameObject otherGameObject)
 {
-     Console.WriteLine("EnemyControlLaser hit: ");
+     //Console.WriteLine("EnemyControlLaser hit: ");
     if (otherGameObject.HasTag("ship"))
     {
-        Console.WriteLine("EnemyControlLaser in if: ");
+       // Console.WriteLine("EnemyControlLaser in if: ");
         GameScene scene = (GameScene)Game.CurrentScene;
         scene.DecreaseLives();
         Explosion explosion = new Explosion(new Vector2f(

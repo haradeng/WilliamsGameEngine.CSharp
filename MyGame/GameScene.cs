@@ -7,7 +7,7 @@ namespace MyGame
     public class GameScene : Scene
     {
         private int _score = 0;
-        private int _lives = 10;
+        private int _lives = 20;
         private int _enemySpawnTimer = 0;
         private const int EnemySpawnDelay = 3000; //3 sec
         private Random _random = new Random();

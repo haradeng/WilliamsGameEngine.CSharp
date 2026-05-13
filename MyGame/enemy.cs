@@ -10,9 +10,19 @@ public class Enemy : GameObject
     private const float Speed = 0.2f;
     private const int FireDelay = 1500;
     private int _fireTimer = 1000;
-    private int _health = 3;
+    private int _health = 10;
     private bool _movingDown = true;
     private readonly Sprite _sprite = new Sprite();
+
+    
+private int _explosionTimer = 0;
+private readonly string[] _damageTextures = {
+    "Resources/ENEMYSHIP.PNG",
+    "Resources/ENEMYSHIP_HIT 1.png",
+    "Resources/ENEMYSHIP_HIT 2.png",
+    "Resources/ENEMYSHIP_HIT 3.png",
+};
+
 
     public Enemy(Vector2f pos)
     {
@@ -30,7 +40,7 @@ public class Enemy : GameObject
 
   public override void HandleCollision(GameObject otherGameObject)
 {
-        Console.WriteLine("my enemy ship = " + otherGameObject.Tag);
+      //  Console.WriteLine("my enemy ship = " + otherGameObject.Tag);
     if (otherGameObject.HasTag("laser"))
     {
         GameScene scene = (GameScene)Game.CurrentScene;
@@ -48,7 +58,7 @@ public class Enemy : GameObject
         return _sprite.GetGlobalBounds();
     }
 
-    public void TakeHit()
+/*     public void TakeHit()
     {
         _health--;
         if (_health <= 0)
@@ -56,7 +66,27 @@ public class Enemy : GameObject
             ((GameScene)Game.CurrentScene).IncreaseScore();
             MakeDead();
         }
+    } */
+     
+
+public void TakeHit()
+{
+    _health--;
+    
+    int textureIndex = _damageTextures.Length - (_health * _damageTextures.Length / 10);
+    textureIndex = Math.Clamp(textureIndex, 0, _damageTextures.Length - 1);
+    _sprite.Texture = Game.GetTexture(_damageTextures[textureIndex]);
+
+    if (_health <= 0)
+    {
+        ((GameScene)Game.CurrentScene).IncreaseScore();
+        MakeDead();
     }
+}
+
+
+
+
 
     public override void Update(Time elapsed)
     {
@@ -87,8 +117,29 @@ public class Enemy : GameObject
             var shot = new EnemyLaser(_sprite.Position);
             Game.CurrentScene.AddGameObject(shot);
         }
+
+
+           if (_health <= 7)
+    {
+        _explosionTimer -= msElapsed;
+        if (_explosionTimer <= 0)
+        {
+            _explosionTimer = 150;
+            Vector2f epos = _sprite.Position;
+            pos.X += _sprite.GetGlobalBounds().Width / 2;
+            pos.Y += _sprite.GetGlobalBounds().Height / 2;
+            var explosion = new Explosion(pos);
+            Game.CurrentScene.AddGameObject(explosion);
+        }
+    }
+}
+
+
+
+
+        
     }
 
     
-}
+
 
