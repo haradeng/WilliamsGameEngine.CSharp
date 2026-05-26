@@ -13,6 +13,7 @@ public class Enemy : GameObject
     private int _health = 10;
     private bool _movingDown = true;
     private readonly Sprite _sprite = new Sprite();
+    public static int EnemyCount = 0;
 
     
 private int _explosionTimer = 0;
@@ -31,6 +32,7 @@ private readonly string[] _damageTextures = {
         _sprite.Scale = new Vector2f(6.5f, 6.5f);
         AssignTag("enemy");
         SetCollisionCheckEnabled(true);
+        EnemyCount++;
     }
 
     public override FloatRect GetCollisionRect()
@@ -79,6 +81,7 @@ public void TakeHit()
 
     if (_health <= 0)
     {
+        EnemyCount--;
         ((GameScene)Game.CurrentScene).IncreaseScore();
         MakeDead();
     }

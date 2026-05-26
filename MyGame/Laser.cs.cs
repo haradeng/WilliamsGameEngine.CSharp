@@ -43,7 +43,31 @@ public class Laser : GameObject
     {
         return _sprite.GetGlobalBounds();
     }
-   public override void HandleCollision(GameObject otherGameObject)
+public override void HandleCollision(GameObject otherGameObject)
+{
+    if (otherGameObject.HasTag("enemy"))
+    {
+        if (otherGameObject is Enemy enemy)
+        {
+            enemy.TakeHit();
+        }
+        else if (otherGameObject is Enemy2 enemy2)
+        {
+            enemy2.TakeHit();
+        }
+        MakeDead();
+    }
+    if (otherGameObject.HasTag("enemylaser"))
+    {
+        ((EnemyLaser)otherGameObject).MakeDead();
+        return;
+    }
+}
+
+
+
+    
+/*    public override void HandleCollision(GameObject otherGameObject)
 {
     //Console.WriteLine("Laser hit: = " + otherGameObject.Tag);
     if (otherGameObject.HasTag("enemy"))
@@ -58,7 +82,7 @@ public class Laser : GameObject
         ((EnemyLaser)otherGameObject).MakeDead();
         return;
     }
-}
+} */
 
 
     
