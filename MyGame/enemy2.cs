@@ -10,7 +10,7 @@ public class Enemy2 : GameObject
     private const float Speed = 0.3f;
     private const int FireDelay = 800;
     private int _fireTimer = 0;
-    private int _health = 20;
+    private int _health = 50;
     private int _explosionTimer = 0;
     private bool _movingDown = true;
     private readonly Sprite _sprite = new Sprite();
@@ -53,7 +53,19 @@ public class Enemy2 : GameObject
     {
         _health--;
 
-        int textureIndex = _damageTextures.Length - (_health * _damageTextures.Length / 4);
+        Console.WriteLine("Enemy2 health: " + _health);
+
+      //  int textureIndex = _damageTextures.Length - (_health * _damageTextures.Length / 4);
+
+      int textureIndex = _health switch
+    {
+        >= 37 => 0,
+        >= 25 => 1,
+        >= 12 => 2,
+    _   => 3
+    };
+
+
         textureIndex = Math.Clamp(textureIndex, 0, _damageTextures.Length - 1);
         _sprite.Texture = Game.GetTexture(_damageTextures[textureIndex]);
 
@@ -96,7 +108,7 @@ public class Enemy2 : GameObject
         }
 
         // explosion effect
-        if (_health <= 0)
+        if (_health <= 25)
         {
             _explosionTimer -= msElapsed;
             if (_explosionTimer <= 15)
